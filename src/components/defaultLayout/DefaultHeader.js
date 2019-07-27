@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink} from 'reactstrap';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink, Button} from 'reactstrap';
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
+
 import { Avatar } from '@material-ui/core';
+import Accessibility from '@material-ui/icons/Accessibility';
+import Menu from '@material-ui/icons/Menu';
+
+import FriendRequestList from '../friends/FriendRequestList'
 
 import logo from '../../assets/img/footprint.png'
 import miniLogo from '../../assets/img/footprint_mini.png'
@@ -18,7 +23,8 @@ class DefaultHeader extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            dropdownOpen: false
+            dropdownOpen: false,
+            notifDropDown: false,
         };
     }
 
@@ -28,26 +34,41 @@ class DefaultHeader extends Component {
         }));
     }
 
+    NoteToggle() {
+        this.setState(prevState => ({
+            notifDropDown: !prevState.dropdownOpen
+        }));
+    }
+
   render() {
     const { profile } = this.props;
     return (
       <React.Fragment>
-        <AppSidebarToggler className="d-lg-none" display="md" mobile />
-        <AppNavbarBrand
-          full={{ src: logo, width: 89, height: 25, alt: 'Footprint Logo' }}
-          minimized={{ src: miniLogo, width: 30, height: 30, alt: 'Footprint Mini Logo' }}
-        />
-        <AppSidebarToggler className="d-md-down-none" display="lg" />
+        <AppSidebarToggler className="d-lg-none" display="md" mobile >
+          <Button color="primary" >
+            <Accessibility/>
+            <b>LinkUp</b>
+          </Button>
+        </AppSidebarToggler>
+        
+        <AppSidebarToggler className="d-md-down-none" display="lg" >
+          <Button color="primary" >
+            <Accessibility/>
+            <b>LinkUp</b>
+          </Button>
+        </AppSidebarToggler>
 
         <Nav className="ml-auto" navbar>
           <NavItem className="d-md-down-none">
+            
             <NavLink href="#"><i className="icon-location-pin"></i></NavLink>
           </NavItem>
+          <FriendRequestList />
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="mr-4">
             <DropdownToggle nav>
-                {
-                    profile.avatar ? <Avatar src={profile.avatar} alt={ profile.firstName + " " + profile.lastName } /> : <Avatar>{ profile.initials }</Avatar>
-                }
+              <Button className="btn btn-sm btn-squeze" color="primary">
+                <Menu/>
+              </Button>
             </DropdownToggle>
             <DropdownMenu>
                 {/*<DropdownItem header tag="div" className="text-center"><strong>Profile</strong></DropdownItem>*/}
@@ -57,6 +78,7 @@ class DefaultHeader extends Component {
                 <DropdownItem onClick={this.props.logout}><i className="fa fa-lock"/> Logout</DropdownItem>
             </DropdownMenu>
           </Dropdown>
+          
         </Nav>
       </React.Fragment>
     )
