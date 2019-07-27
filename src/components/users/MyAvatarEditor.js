@@ -81,7 +81,7 @@ class MyAvatarEditor extends React.Component {
                         scale={this.state.scale}
                         onImageReady={this.handleImageReady}
                     />
-                    <Input type="file" accept="image/*" onChange={ this.handleFileSelect } />
+                    <Input type="file" accept="image/*" name="user[image_attributes][file]" onChange={ this.handleFileSelect } />
                     <div className="my-2">
                         <Slider min={1} max={100} defaultValue={50} onChange={ value => this.handleFileScaled(value) } />
                     </div>

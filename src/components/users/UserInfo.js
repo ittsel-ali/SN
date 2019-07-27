@@ -9,9 +9,9 @@ class UserInfo extends Component{
 
   render(){
     return(
-      <div class="sticky-top">
+      <div>
         <hr/>
-        <img class="img-fluid mx-auto d-block" src="https://engineering.unl.edu/images/staff/Kayla_Person-small.jpg" />
+        <img class="img-fluid mx-auto d-block" src={this.props.user.image} />
         <hr/>
       </div>
     );
@@ -21,7 +21,7 @@ class UserInfo extends Component{
 
 const mapsToProps = (state) => {
   return({
-    user: state.firebase.profile,
+    user: state.user.profile,
   });
 }
 
