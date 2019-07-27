@@ -1,6 +1,6 @@
 export const createPost = (newPost) => {
   return (dispatch, getState, {getFirebase, getFirestore, HttpService, urls, DataUtil}) => {
-    HttpService.post( urls.posts(), DataUtil.formMulti(newPost) )
+    return HttpService.post( urls.posts(), DataUtil.formMulti(newPost) )
       .then( response => 
         dispatch( {type: "APPEND_POST_STATE", post: response.post}))
   }
