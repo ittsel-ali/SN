@@ -1,16 +1,30 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { Input, Button, Card, CardBody, Row, Col, Form } from 'reactstrap'
+import { Input, Card, CardBody, Row, Col, Form, FormGroup, Button } from 'reactstrap'
+import ReactLoading from 'react-loading';
+
 import {createPost} from '../../store/actions/postActions'
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+
 
 class CreatePost extends Component{
   constructor(props){
-    super(props)
+    super(props);
+    this.state = {
+      disabled: false
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createPost(e.target);
+    this.setState(() => {
+      return {disabled: true};
+    });
+
+    this.props.createPost(e.target).then(() => this.setState(() => {
+      return {disabled: false};
+    }));
   }
 
   render(){
@@ -18,18 +32,28 @@ class CreatePost extends Component{
       <div>
         <Card>
           <CardBody>
+
             <Form onSubmit={this.handleSubmit}>
-              <Input type="textarea" name="post[text]" placeholder="Write your mind..." />
-            
+              <FormControl fullWidth>
+              <TextField name="post[text]" autoComplete="off" placeholder="Write your mind..." />
+
+              <br/>  
+              
               <Row>
                 <Col sm="6">
-                  <Input type="file" name="post[image_attributes][file]" />
+                  <Input type="file" multiple name="post[image_attributes][file]" />
                 </Col>
 
                 <Col sm="6">
-                  <Button> Post </Button>
+                  <div class="float-right">
+                    { this.state.disabled ? 
+                      <ReactLoading type="bubbles" color="#426494" height={50} width={50}/> : 
+                      <Button color="primary" > POST </Button>
+                    }
+                  </div>
                 </Col>
               </Row>
+              </FormControl>
             </Form>
           </CardBody>
         </Card>
