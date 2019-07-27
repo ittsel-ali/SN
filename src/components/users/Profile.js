@@ -11,6 +11,7 @@ import {
   Input,
   Label,
   Row,
+  Form
 } from 'reactstrap';
 
 import MyAvatarEditor from './MyAvatarEditor';
@@ -47,9 +48,9 @@ class Profile extends Component {
       });
   }
 
-  handleSubmit = () => {
-    this.props.updateProfile(this.state);
-    this.props.history.push('/');
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.updateProfile(e.target);
   }
 
 
@@ -59,6 +60,7 @@ class Profile extends Component {
             <Row>
               <Col xs="12" md="12">
                 <Card>
+                  <Form onSubmit={this.handleSubmit}>
                   <CardHeader>
                     <strong>Edit your profile</strong>
                   </CardHeader>
@@ -72,7 +74,7 @@ class Profile extends Component {
                           <Col xs="12">
                             <FormGroup>
                               <Label htmlFor="email">Email</Label>
-                              <Input type="text" id="email" value={this.state.email} disabled/>
+                              <Input type="text" id="email" name="user[email]"value={this.state.email} disabled/>
                             </FormGroup>
                           </Col>
                         </FormGroup>
@@ -81,14 +83,14 @@ class Profile extends Component {
                           <Col xs="6">
                             <FormGroup>
                               <Label htmlFor="firstName">First name</Label>
-                              <Input type="text" id="firstName" placeholder="Enter your first name"
+                              <Input type="text" id="firstName" name="user[first_name]"placeholder="Enter your first name"
                                      value={this.state.firstName} onChange={this.updateInput}/>
                             </FormGroup>
                           </Col>
                           <Col xs="6">
                             <FormGroup>
                               <Label htmlFor="lastName">Last name</Label>
-                              <Input type="text" id="lastName" placeholder="Enter your last name"
+                              <Input type="text" id="lastName" name="user[last_name]" placeholder="Enter your last name"
                                      value={this.state.lastName} onChange={this.updateInput}/>
                             </FormGroup>
                           </Col>
@@ -98,7 +100,7 @@ class Profile extends Component {
                           <Col xs="6">
                             <FormGroup>
                               <Label htmlFor="gender">Gender</Label>
-                              <Input type="select" id="gender" value={this.state.gender} onChange={this.updateInput}>
+                              <Input type="select" id="gender" name="user[gender]" value={this.state.gender} onChange={this.updateInput}>
                                 <option>Please select</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -121,9 +123,10 @@ class Profile extends Component {
                     </FormGroup>
                   </CardBody>
                   <CardFooter>
-                    <Button type="submit" color="primary" className="mr-2" onClick={this.handleSubmit}><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                    <Button type="submit" color="primary" className="mr-2" ><i className="fa fa-dot-circle-o"></i> Submit</Button>
                     <Button type="reset" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                   </CardFooter>
+                  </Form>
                 </Card>
               </Col>
             </Row>
