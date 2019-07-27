@@ -17,6 +17,9 @@ const postReducer = (state, action) => {
         ...state,
         posts: [action.post, ...state.posts]
       };
+    
+    case "DEL_POST_STATE":
+      return defaultState;  
 
     default: 
       return state === undefined ? defaultState : state;

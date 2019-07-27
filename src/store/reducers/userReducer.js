@@ -1,8 +1,5 @@
 const initialState = {
-  email: null,
-  photo: null,
-  firstName: null,
-  lastName: null,
+  profile: {}
 };
 
 const userReducer = (state, action) => {
@@ -11,10 +8,7 @@ const userReducer = (state, action) => {
       console.log("Setting new user...")
       return {
         ...state,
-        email: action.user.email,
-        photo: action.user.photo,
-        firstName: action.user.firstName,
-        lastName: action.user.lastName
+        profile: action.user,
       };
   
     default: 
