@@ -11,6 +11,42 @@ export const urls = {
     return this.api_url+"/oauth/token";
   },
 
+  me: function() {
+    return this.api_url+"/users/me";
+  },
+  
+  update_user: function(){
+    return this.api_url+"/users/update_user";
+  },
+
+  users: function() {
+    return this.api_url+"/users";
+  },
+
+  friend_info: function(friend_id) {
+    return this.api_url+"/friends/:friend_id/friend_info".replace(":friend_id", friend_id);
+  },
+
+  friends: function() {
+    return this.api_url+"/friends";
+  },
+
+  friend_requests: function() {
+    return this.api_url+"/friends/requests";
+  },
+
+  inviteFriend: function(friend_id) {
+    return this.api_url+"/friends/:friend_id/invite_friend".replace(":friend_id", friend_id);
+  },
+
+  confirmFriend: function(friend_id) {
+    return this.api_url+"/friends/:friend_id/confirm_friend".replace(":friend_id", friend_id);
+  },
+
+  timeline: function(user_id) {
+    return this.api_url+"/users/:user_id/timeline".replace(":user_id", user_id);
+  },
+
   posts: function() {
     return this.api_url+"/posts";
   },

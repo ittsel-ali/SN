@@ -39,13 +39,37 @@ export const HttpService = {
     return(
       fetch(url, {
         method: "PUT",
-        data: JSON.stringify(data),
-        headers: this.headers
+        body: data,
+        headers: this.headers 
         })
+      
+      .then( response => {
+        if(!response.ok)
+          throw response.json();
+        return response.json();
+        })
+      
+      .catch( err => err.then( err => {throw err} ))
       );
     },
   
-  patch: (url) => {},
+  patch: function(url, data){ 
+    return(
+      fetch(url, {
+        method: "PATCH",
+        body: data,
+        headers: this.headers 
+        })
+      
+      .then( response => {
+        if(!response.ok)
+          throw response.json();
+        return response.json();
+        })
+      
+      .catch( err => err.then( err => {throw err} ))
+      );
+    },
 
   
 
