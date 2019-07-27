@@ -2,6 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import { Row } from 'reactstrap'
 
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
+
 class ShowComment extends Component{
   constructor(props){
     super(props)
@@ -9,11 +16,33 @@ class ShowComment extends Component{
 
   render(){
     return(
-      <div>
-        <img class="img-fluid" src={this.props.post.image} width="40px" height="40px" />
-        <p class="badge">{this.props.comment.text}</p>
-        <hr/>
-      </div>
+      <ListItem alignItems="flex-start">
+       
+        <Chip
+          avatar = {
+            <Avatar size="small" alt="Remy Sharp" src={this.props.comment.author_image} >R</Avatar>
+            }
+        
+          label = {
+            <ListItemText
+            secondary={
+              <React.Fragment>
+                <Typography
+                  component="span"
+                  variant="body2"
+                  color="textPrimary"
+                  >
+                
+                {this.props.comment.author}
+                
+                </Typography>
+                {' - '+this.props.comment.text}
+              </React.Fragment>
+              }/>
+            }
+          variant="outlined"
+        />
+      </ListItem>
       );
   }
 }
