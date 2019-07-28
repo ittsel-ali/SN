@@ -34,7 +34,12 @@ class FriendList extends Component{
     const list = [];
 
     if( this.props.friends == undefined || this.props.friends.length == 0)
-      list.push(<p>No Friends Available</p>);
+      list.push(
+        <p class="text-center">
+          <Typography variant="body2" color="textSecondary" component="p">
+            No Friends Available
+          </Typography>
+        </p>);
     else
       for( const friend of this.props.friends){
         list.push(

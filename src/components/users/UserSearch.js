@@ -39,7 +39,12 @@ class FriendList extends Component{
     const list = [];
 
     if( this.props.searchUsers == undefined || this.props.searchUsers.length == 0)
-      list.push(<p>No User Available</p>);
+      list.push(
+        <p class="text-center">
+          <Typography variant="body2" color="textSecondary" component="p">
+            No Search Result
+          </Typography>
+        </p>);
     else
       for( const user of this.props.searchUsers){
         list.push(
