@@ -11,6 +11,10 @@ header{
 	padding: 7px 0px !important;
 }
 
+.card-color-blue{
+  background-color: #426494 !important;
+}
+
 a {
 	color: #426494 !important;
 }

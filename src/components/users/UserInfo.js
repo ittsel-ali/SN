@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Card, Button} from 'reactstrap' 
 
 
 class UserInfo extends Component{
@@ -11,7 +12,13 @@ class UserInfo extends Component{
     return(
       <div>
         <hr/>
-        <img class="img-fluid mx-auto d-block" src={this.props.user.image} />
+        <Card className="card-color-blue">
+          <img class="img-fluid mx-auto d-block" src={this.props.user.image} />
+          <Button color="primary" >
+            <b>{this.props.user.name}</b>
+          </Button>
+
+        </Card>
         <hr/>
       </div>
     );

@@ -8,11 +8,12 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Typography from '@material-ui/core/Typography';
+import ListSubheader from '@material-ui/core/ListSubheader';
 // import Button from '@material-ui/core/Button';
 
 import Avatar from '@material-ui/core/Avatar';
 
-import {Button, Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import {Button, Card, CardBody, CardTitle, CardText, Input} from 'reactstrap'
 import {searchUser, inviteFriend} from '../../store/actions/friendActions'
 
 class FriendList extends Component{
@@ -67,7 +68,7 @@ class FriendList extends Component{
   }
   render(){
     return(
-      <List dense>
+      <List dense subheader={<ListSubheader><Input/></ListSubheader>}>
         {this.displayFriends()}
       </List>
       );

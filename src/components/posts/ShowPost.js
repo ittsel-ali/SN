@@ -39,6 +39,7 @@ class ShowPost extends Component{
         comments: props.post.comments,
         author: props.post.author,
         author_image: props.post.author_image,
+        time: props.post.time
       }
     };
   }
@@ -81,7 +82,7 @@ class ShowPost extends Component{
               </IconButton>
             }
             title={this.state.post.author}
-            subheader="September 14, 2016"
+            subheader={this.state.post.time}
           />
           
           <CardContent>
