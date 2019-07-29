@@ -4,6 +4,11 @@ import {Link} from 'react-router-dom'
 import { Avatar } from '@material-ui/core';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Typography from '@material-ui/core/Typography';
+
 
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink, Button, Card, CardBody, CardTitle, CardText} from 'reactstrap'
 import {getFriendRequests, confirmFriendship, updateFriendRequests} from '../../store/actions/friendActions'
@@ -40,12 +45,32 @@ class FriendRequestList extends Component{
     const list = [];
 
     if( this.props.friendrequests == undefined || this.props.friendrequests.length == 0)
-      list.push(<p>No Request Available</p>);
+      list.push(
+        <p class="text-center">
+          <Typography variant="body2" color="textSecondary" component="p">
+            No Request Available
+          </Typography>
+        </p>
+        );
     else
       for( const friendrequest of this.props.friendrequests){
         list.push(<DropdownItem>
-        <p>{friendrequest.name}</p>
-        <Button onClick={this.confirm} value={friendrequest.id}>Confirm</Button>
+        <ListItemAvatar>
+          <Avatar
+            alt={friendrequest.name}
+            src={friendrequest.image}
+          />
+        </ListItemAvatar>
+        <ListItemText id={friendrequest.id} primary={
+          <Typography variant="body2" color="textSecondary" component="p">
+            {friendrequest.name}
+          </Typography>
+          } />
+        <ListItemSecondaryAction>
+          <Button color="primary" onClick={this.confirm} value={friendrequest.id}>
+            Confirm
+          </Button>
+        </ListItemSecondaryAction>
         </DropdownItem>)
       };
 
