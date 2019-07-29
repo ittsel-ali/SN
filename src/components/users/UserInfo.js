@@ -11,7 +11,7 @@ class UserInfo extends Component{
   render(){
     return(
       <div>
-        <hr/>
+        <br/>
         <Card className="card-color-blue">
           <img class="img-fluid mx-auto d-block" src={this.props.user.image} />
           <Button color="primary" >
