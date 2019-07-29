@@ -23,6 +23,10 @@ export const urls = {
     return this.api_url+"/users";
   },
 
+  user_search: function(search) {
+    return this.api_url+"/users/search/:search".replace(":search", search);
+  },
+
   friend_info: function(friend_id) {
     return this.api_url+"/friends/:friend_id/friend_info".replace(":friend_id", friend_id);
   },

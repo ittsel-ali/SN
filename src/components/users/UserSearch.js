@@ -35,6 +35,11 @@ class FriendList extends Component{
     e.target.disabled = true;
   }
 
+  search = (e) => {
+    if( e.key == 'Enter')
+      this.props.searchUser(e.target.value);
+  } 
+
   displayFriends(){
     const list = [];
 
@@ -73,7 +78,7 @@ class FriendList extends Component{
   }
   render(){
     return(
-      <List dense subheader={<ListSubheader><Input/></ListSubheader>}>
+      <List dense subheader={<ListSubheader><Input onKeyPress={this.search} /></ListSubheader>}>
         {this.displayFriends()}
       </List>
       );
