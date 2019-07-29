@@ -51,7 +51,7 @@ class Home extends Component{
     return(
       <div>
         <Row>
-          <Col sm="2" style={{position:"fixed"}}>
+          <Col sm="2" className="d-none d-md-block d-xl-none" style={{position:"fixed"}}>
             <UserInfo />
           </Col>
           
