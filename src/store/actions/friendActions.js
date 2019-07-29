@@ -62,7 +62,9 @@ export const updateFriendRequests = (request) => {
 
 export const searchUser = (string) => {
   return (dispatch, getState, {getFirebase, getFirestore, HttpService, urls, DataUtil}) => {
-    HttpService.get( urls.user_search(string) ).then( (data) => {
+    const str = (string ? string : ":all");
+
+    HttpService.get( urls.user_search(str) ).then( (data) => {
       dispatch({type: "UPDATE_SEARCH_USER_LIST", users: data})
     } )
   }

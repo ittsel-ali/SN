@@ -25,7 +25,7 @@ class FriendList extends Component{
   }
 
   componentDidMount(){
-    this.props.searchUser("");
+    this.props.searchUser(":all");
   }
 
   invite = (e) => {
